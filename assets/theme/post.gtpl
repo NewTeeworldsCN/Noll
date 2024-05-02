@@ -49,14 +49,6 @@
       background-color: transparent;
     }
 
-    .reaction+.reaction {
-      margin-left: 0;
-    }
-
-    .reaction a {
-      border-radius: 100px;
-    }
-
     .comment {
       width: 100%;
     }

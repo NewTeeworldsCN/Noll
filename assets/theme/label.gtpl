@@ -3,7 +3,7 @@
 
 <head>
   {{ template "HeadTemplate" .Viewer }}
-  <title>{{ .Data.Name }} Label —— {{ .Viewer.ShowName }}'s Blog </title>
+  <title>{{ .Data.Name }} Label —— {{ .Viewer.ShowName }}论坛 </title>
 </head>
 
 <body {{ template "ColorStyleTemplate" .Data.Color }}>

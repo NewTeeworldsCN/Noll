@@ -164,14 +164,10 @@ func render(site *RenderSite, data *GithubData, themeTmplDir string, debug bool,
 				switch path {
 				case "Index":
 					path = "/"
-				case "Archive":
-					path = "archive/1.html"
 				case "Categories":
 					path = "categories.html"
 				case "Labels":
 					path = "labels.html"
-				case "About":
-					path = "about.html"
 				case "RSS":
 					path = "rss.xml"
 				case "NewPost":
@@ -199,10 +195,6 @@ func render(site *RenderSite, data *GithubData, themeTmplDir string, debug bool,
 			if _, ok := obj.(*CategoryPage); ok {
 				// 类别文章列表分页
 				return UnixPath(filepath.Join(site.BaseURL, "category", fmt.Sprintf("%v.html", number)))
-			}
-			if _, ok := obj.(*DiscussionPage); ok {
-				// 归档文章列表分页
-				return UnixPath(filepath.Join(site.BaseURL, "archive", fmt.Sprintf("%v.html", number)))
 			}
 			return site.BaseURL
 		},
@@ -289,12 +281,6 @@ func render(site *RenderSite, data *GithubData, themeTmplDir string, debug bool,
 	}
 	htmlPages[labelsTemplate.Name()] = stringWriter.String()
 
-	aboutTemplate := themeTemplate.Lookup("about.gtpl")
-	if err = aboutTemplate.Execute(stringWriter.Reset(), _data); err != nil {
-		return err
-	}
-	htmlPages[aboutTemplate.Name()] = stringWriter.String()
-
 	categoryTemplate := themeTemplate.Lookup("category.gtpl")
 	for _, category := range data.Repository.Categories.Nodes {
 		_data.Data = category
@@ -324,30 +310,6 @@ func render(site *RenderSite, data *GithubData, themeTmplDir string, debug bool,
 			jsRenderTemplate.Execute(stringWriter, jrl)
 		}
 		htmlPages[fmt.Sprintf(`post/%v.gtpl`, discussion.Number)] = stringWriter.String()
-	}
-
-	archiveTemplate := themeTemplate.Lookup("archive.gtpl")
-	totalCount := data.Repository.Discussions.TotalCount
-	pageIndex := 1 // 编号从 1 开始
-	pageSize := 30
-	pageCount := totalCount / pageSize
-	if totalCount%pageSize > 0 {
-		pageCount++
-	}
-	for start := 0; start < totalCount; {
-		end := start + pageSize
-		if end > totalCount {
-			end = totalCount
-		}
-		nodes := data.Repository.Discussions.Nodes[start:end]
-		_pageInfo := &PageInfo{end < totalCount, fmt.Sprintf("%v", pageIndex+1), 0 < start, fmt.Sprintf("%v", pageIndex-1)}
-		_data.Data = &DiscussionPage{end - start, nodes, _pageInfo}
-		if err = archiveTemplate.Execute(stringWriter.Reset(), _data); err != nil {
-			return err
-		}
-		htmlPages[fmt.Sprintf("archive/%v.gtpl", pageIndex)] = stringWriter.String()
-		pageIndex++
-		start = end
 	}
 
 	globalTemplate, err := readGlobalGtpl("global.gtpl")

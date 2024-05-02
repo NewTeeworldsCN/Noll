@@ -3,22 +3,13 @@
 
 <head>
   {{ template "HeadTemplate" .Viewer }}
-  <title>{{ .Viewer.ShowName }}'s Blog </title>
+  <title>{{ .Viewer.ShowName }}论坛 </title>
 </head>
 
 <body>
   {{ if .Data }}
   {{ template "HeaderTemplate" . }}
   <div class="clearfix">
-    <div>
-      <h1>近期文章</h1>
-      {{ template "DiscussionGroup2Template" .Data }}
-      <ul class="ul" style="margin-left: -10px;">
-        <li class="li">
-          <a href='{{ url "Archive" }}'>更多文章 >>></a>
-        </li>
-      </ul>
-    </div>
     <div>
       <h1>分类</h1>
       {{ template "CategoryGroupTemplate" .Categories }}

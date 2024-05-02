@@ -3,7 +3,7 @@
 
 <head>
   {{ template "HeadTemplate" .Viewer }}
-  <title>404 Not Found —— {{ .Viewer.ShowName }}'s Blog </title>
+  <title>404 Not Found —— {{ .Viewer.ShowName }}论坛 </title>
 </head>
 
 <body>

@@ -117,17 +117,27 @@
     <span class="COMMENT" style="margin: 0 12px"></span>
     <div style="flex: 1; height: 1px; background-color: #ddd;"></div>
   </div>
-  {{ if .Data.Comments }}
-  <ul class="ul" style="margin: 30px auto; font-size: 1rem;">
-    {{ range $comment := .Data.Comments.Nodes }}
-    <li class="li comment">
-      {{ template "CommentItemTemplate" $comment }}
-    </li>
-    {{ end }}
-  </ul>
-  {{ end }}
-  <a href="{{ $githubURL }}#issue-comment-box" class="comment-input">前往 GitHub Discussion 评论</a>
-  {{ template "footerTemplate" .Viewer }}
+  <div class="comments giscus-container">
+    <script src="https://giscus.app/client.js"
+        data-repo="NewTeeworldsCN/NewTeeworldsCN.github.io"
+        data-repo-id="R_kgDOL2GNUQ"
+        data-category-id="DIC_kwDOL2GNUc4CfFke"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+    </script>
+    <div class="giscus">
+      <iframe class="giscus-frame">
+      </iframe>
+    </div>
+  </div>
 </body>
 
 </html>

@@ -3,7 +3,7 @@
 
 <head>
   {{ template "HeadTemplate" .Viewer }}
-  <title>标签 —— {{ .Viewer.ShowName }}'s Blog </title>
+  <title>标签 —— {{ .Viewer.ShowName }}论坛 </title>
 </head>
 
 <body>

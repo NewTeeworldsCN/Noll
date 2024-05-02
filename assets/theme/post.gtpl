@@ -99,19 +99,6 @@
     {{ end }}
     {{ end }}
   </ul>
-  <ul class="ul" style="text-align: center; margin: 30px auto;">
-    <li class="li reaction">
-      <a href="{{ $githubURL }}"><span class="SMILING"></span></a>
-    </li>
-    {{ range $reaction := .Data.ReactionGroups }}
-    {{ if $reaction.Reactors.TotalCount }}
-    <li class="li reaction">
-      <a href="{{ $githubURL }}"><span class="{{ $reaction.Content }}">
-          {{ $reaction.Reactors.TotalCount }}</span></a>
-    </li>
-    {{ end }}
-    {{ end }}
-  </ul>
   {{ template "TopComponentTemplate" }}
   <div style="display: flex; align-items: center; margin: 30px auto;">
     <div style="flex: 1; height: 1px; background-color: #ddd;"></div>

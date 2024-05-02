@@ -2,6 +2,7 @@
 <html lang="zh-CN">
 
 {{ $githubURL := .Data.GitHubURL }}
+{{ $DiscussionID := .Data.Number }}
 
 <head>
   {{ template "HeadTemplate" .Viewer }}
@@ -121,9 +122,8 @@
     <script src="https://giscus.app/client.js"
         data-repo="NewTeeworldsCN/NewTeeworldsCN.github.io"
         data-repo-id="R_kgDOL2GNUQ"
-        data-category-id="DIC_kwDOL2GNUc4CfFke"
-        data-mapping="pathname"
-        data-strict="1"
+        data-mapping="number"
+        data-term="{{ $DiscussionID }}"
         data-reactions-enabled="1"
         data-emit-metadata="0"
         data-input-position="top"
